@@ -1,0 +1,151 @@
+:root{
+  --primary-color: #005BFF;
+  --primary-light-color: #0059ff94;
+
+}
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: content-box;
+}
+
+body{
+  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  height: 100vh;
+}
+
+#app{
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+/* Progress container */
+
+.container{
+  width: max-content;
+  height: fit-content;
+  background-color: inherit;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  gap: 50px;
+}
+
+@media (orientation: landscape) {
+  .container {
+    flex-direction: row; 
+  }
+}
+
+/* Progress ring */
+.progress{
+    position: relative;
+    width: 150px;
+    aspect-ratio: 1/1;
+    border-radius: 50%;
+    background:  conic-gradient(var(--primary-color) 0% 70% , #001a3406 0deg);
+    box-shadow: 0px 0px 10px 1px var(--primary-light-color) ;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.progress::before{
+  content: "";
+  position: absolute;
+  width: 120px;
+  aspect-ratio: 1/1;
+  background-color: #fff;
+  border-radius: 50%;
+  box-shadow: 0px 0px 10px 1px var(--primary-light-color) inset;
+
+}
+
+/* States wrapper */
+.states-wrapper{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: start;
+  justify-content: center;
+}
+
+.state{
+  display: flex;
+  align-items: center;
+  gap: 15px;
+  font-weight: 500;
+}
+
+.normal-state input{
+  font-size: 10px;
+  font-weight: bold;
+  text-align: center;
+  width: 3em;
+  height: 1.7em;
+  padding: 1px;
+  border-radius: 30px;
+  outline: none;
+  border: 1px solid #adb5bd;
+
+}
+/* Switchers */
+.switch {
+  font-size: 10px;
+  position: relative;
+  display: inline-block;
+  width: 3.5em;
+  height: 2em;
+  
+}
+
+.switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #fff;
+  border: 1px solid #adb5bd;
+  transition: .4s;
+  border-radius: 30px;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 1.4em;
+  width: 1.4em;
+  border-radius: 20px;
+  left: 0.27em;
+  bottom: 0.25em;
+  background-color: #adb5bd;
+  transition: .4s;
+}
+
+input:checked + .slider {
+  background-color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+input:focus + .slider {
+  box-shadow: 0 0 1px var(--primary-color);
+}
+
+input:checked + .slider:before {
+  transform: translateX(1.4em);
+  background-color: #fff;
+}
