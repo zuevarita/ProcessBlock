@@ -1,13 +1,42 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>teh_zad</title>
-  </head>
-  <body>
-    <div id="app"></div>
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>teh_zad</title>
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+
+<body>
+  <div id="app">
+    <div class="container">
+      <div class="progress">
+
+      </div>
+      <div class="states-wrapper">
+        <div class="state normal-state">
+          <input type="number"  id="normal">
+          <label for="normal">Value</label>
+        </div>
+        <div class="state animate-state">
+          <label class="switch">
+            <input type="checkbox" id="animate">
+            <span class="slider"></span>
+          </label>
+          <label for="animate">Animate</label>
+        </div>
+        <div class="state hide-state">
+          <label class="switch">
+            <input type="checkbox" id="hide">
+            <span class="slider"></span>
+          </label>
+          <label for="hide">Hide</label>
+        </div>
+      </div>
+    </div>
     <script type="module" src="/src/main.js"></script>
-  </body>
+</body>
+
 </html>
