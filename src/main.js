@@ -2,6 +2,7 @@ import "./style.css";
 import { Progress } from "./progress.js";
 
 const progressRing = new Progress(document.querySelector(".progress"))
+
 document.querySelector(".normal-state").addEventListener("change", (e)=>{
   progressRing.setValue(e.target.value)
 })
