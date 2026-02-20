@@ -1,15 +1,13 @@
 export class Progress {
-  #circleLength = 0;
   #percentage = 0;
-  #container;
   #element;
   #circle;
+  #isActive;
   constructor(container) {
-    this.#container = container;
-    this.#createElement();
+    this.#createElement(container);
   }
 
-  #createElement() {
+  #createElement(container) {
     const progressContainer = document.createElement("div");
     const progressHTML = `
         <svg class = "progress-ring" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
@@ -19,23 +17,26 @@ export class Progress {
     progressContainer.innerHTML = progressHTML;
 
     this.#element = progressContainer.firstElementChild;
-    this.#container.insertAdjacentElement("afterbegin", this.#element);
+    container.insertAdjacentElement("afterbegin", this.#element);
     this.#circle = this.#element.querySelector(".progress-bar");
 
-    this.#circleLength = this.#circle.r.baseVal.value * Math.PI * 2;
-    this.#circle.style.strokeDasharray = `${this.#circleLength} ${this.#circleLength}`;
-    this.#circle.style.strokeDashoffset = `${this.#circleLength}`;
+    this.circleLength = this.#circle.r.baseVal.value * Math.PI * 2 + 0.2;
+    this.#circle.style.strokeDasharray = `${this.circleLength} ${this.circleLength}`;
+    this.#circle.style.strokeDashoffset = `${this.circleLength}`;
+
   }
 
   setValue(perc) {
     this.#percentage = Math.min(Math.max(perc, 0), 100);
-    this.#circle.style.strokeDashoffset = `${this.#circleLength - (this.#percentage / 100) * this.#circleLength}`;
+    const showLine = (this.#isActive && (this.#percentage === 0 || this.#percentage === 100))? 25: this.#percentage
+    this.#circle.style.strokeDashoffset = `${this.circleLength - (showLine / 100) * this.circleLength}`;
   }
 
   setAnimate(isActive) {
+    this.#isActive = isActive;
     if (isActive) {
       if (this.#percentage === 0 || this.#percentage === 100) {
-        this.#circle.style.strokeDashoffset = `${this.#circleLength - (25 / 100) * this.#circleLength}`;
+        this.#circle.style.strokeDashoffset = `${this.circleLength - (25 / 100) * this.circleLength}`;
       }
       this.#element.classList.add("isActive");
     }else{
